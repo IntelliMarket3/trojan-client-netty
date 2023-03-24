@@ -23,10 +23,13 @@ public class ConfigUtil {
     private ConfigProperties configProperties;
 
     private Map<String, PacModel> pacModelMap = new HashMap<>();
+
+    private PacFileDataProvider pacFileDataProvider;
     
     @Autowired
-    public ConfigUtil(ConfigProperties configProperties) {
+    public ConfigUtil(ConfigProperties configProperties, PacFileDataProvider pacFileDataProvider) {
         this.configProperties = configProperties;
+        this.pacFileDataProvider = pacFileDataProvider;
     }
 
     /**
@@ -59,7 +62,7 @@ public class ConfigUtil {
                 return pacModelMap;
             }
             String pacFilePath = configProperties.getPacFilePath();
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(pacFilePath)));
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(pacFileDataProvider.getInputStream(pacFilePath)));
             String str;
             while ((str = bufferedReader.readLine()) != null) {
                 String s = str.toLowerCase(Locale.ROOT).replaceAll("\\s*|\t", "");

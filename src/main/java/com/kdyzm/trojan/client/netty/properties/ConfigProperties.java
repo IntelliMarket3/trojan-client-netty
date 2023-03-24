@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  */
 @Data
 @Component
-@PropertySource(value = {"file:config.yml"}, factory = YamlPropertySourceFactory.class)
+@PropertySource(value = {"classpath:/trojan-config.yml"}, factory = YamlPropertySourceFactory.class)
 public class ConfigProperties {
 
     /**
