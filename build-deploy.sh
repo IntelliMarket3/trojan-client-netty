@@ -1,0 +1,1 @@
+ mvn clean install deploy -Dmaven.test.skip=true --settings ~/.m2/settings-dpitech.xml
